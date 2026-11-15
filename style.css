@@ -31,6 +31,12 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
 .btn.ghost { background: transparent; color: var(--fg); border-color: var(--line); }
 .btn svg { width: 18px; height: 18px; margin-right: .55rem; flex: none; }
 .dm { display: flex; flex-wrap: wrap; gap: .75rem; }
+.btn, .badge, .counter, .look-link { white-space: nowrap; }
+.hero-meta { flex-wrap: wrap; }
+@media (min-width: 861px) and (max-width: 1240px) {
+  .hero-copy .dm-verb { display: none; }
+  .hero-copy .dm .btn { flex: 1 1 auto; }
+}
 .look-link { display: inline-flex; align-items: center; min-height: 44px; margin-left: auto; font: 600 .85rem/1 var(--body); letter-spacing: .04em; color: var(--fg); }
 .look-link:hover { color: var(--accent); }
 
