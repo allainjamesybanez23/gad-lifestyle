@@ -8,6 +8,20 @@
   const hasGsap = !!(window.gsap && window.ScrollTrigger);
   if (reduced) root.classList.add("reduced");
 
+  /* ---------- DM buttons: every order/quote CTA offers Messenger and Instagram ---------- */
+  const ICON = {
+    fb: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3C7 3 3 6.7 3 11.3c0 2.6 1.3 4.9 3.4 6.4V21l3.1-1.7c.8.2 1.6.3 2.5.3 5 0 9-3.7 9-8.3S17 3 12 3z"/><path d="M7.5 13.6l3.1-3.3 2.1 2 3.8-2.4-3.1 3.3-2.1-2z"/></svg>',
+    ig: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="currentColor"/></svg>',
+  };
+  function dmButtons(verb, what) {
+    const one = (cls, href, icon, app) =>
+      `<a class="btn ${cls}" href="${href}" target="_blank" rel="noopener" aria-label="${what} on ${app}">${icon}<span><span class="dm-verb">${verb} on </span>${app}</span></a>`;
+    return one("", SITE.messenger, ICON.fb, "Messenger") + one("ghost", SITE.igDM, ICON.ig, "Instagram");
+  }
+  document.querySelectorAll("[data-dm]").forEach((el) => (el.innerHTML = dmButtons(el.dataset.dm, el.dataset.dm)));
+  const relabel = (box, what) => box.querySelectorAll("a").forEach((a) =>
+    a.setAttribute("aria-label", `${what} on ${a.href.includes("instagram") ? "Instagram" : "Messenger"}`));
+
   /* ---------- static content from data.js ---------- */
   document.querySelectorAll("[data-link]").forEach((a) => (a.href = SITE[a.dataset.link]));
   $("about-bio").textContent = SITE.bio + ".";
@@ -58,8 +72,7 @@
     $("h-note").textContent = [d.note, d.price, d.sizes && "Sizes " + d.sizes].filter(Boolean).join(" · ") || "DM for price and sizes";
     $("h-look").href = "#look-" + d.slug;
     $("h-look").setAttribute("aria-label", `View ${d.name} lookbook`);
-    $("h-order").href = SITE.igDM;
-    $("h-order").setAttribute("aria-label", `Order ${d.name}, DM us on Instagram`);
+    relabel($("h-dm"), `Order ${d.name}`);
     // side photos: model shots first, the back of the jersey as a fallback
     const pics = d.models.slice(0, 2).map((src) => ({ src, alt: `Model wearing GAD ${d.name} jersey`, cap: "On body" }));
     if (pics.length < 2 && d.back) pics.push({ src: d.back, alt: `GAD ${d.name} jersey, back`, cap: "Back" });
@@ -77,8 +90,8 @@
   function render(pos) {
     pos = clamp(pos, 0, N - 1);
     const i = Math.min(Math.floor(pos), N - 2), f = pos - i;
-    let t = clamp((f - 0.3) / 0.4, 0, 1);          // hold each design, flip in the middle 40%
-    t = t * t * (3 - 2 * t);
+    let t = clamp((f - 0.15) / 0.7, 0, 1);         // short hold on each design, long soft flip between
+    t = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;   // cubic in-out
     const r = i + t;                                // 0..N-1, eased
     // the two faces of the card carry the even / odd design nearest to r
     let even = 2 * Math.round(r / 2), odd = 2 * Math.floor(r / 2) + 1;
@@ -92,21 +105,33 @@
       faceA.style.opacity = evenOp;
       faceB.style.opacity = 1 - evenOp;
     } else {
-      const dip = 1 - 0.08 * Math.sin(t * Math.PI);
-      card.style.transform = `rotateY(${r * 180}deg) scale(${dip})`;
+      // the card pulls back and lifts slightly while it turns, so the edge-on moment reads as depth, not a sliver
+      const s = Math.sin(t * Math.PI);
+      card.style.transform = `translateY(${-14 * s}px) rotateY(${r * 180}deg) scale(${1 - 0.14 * s})`;
     }
 
     showDesign(Math.round(r));
     const fade = Math.abs(1 - 2 * t);               // 1 at rest, 0 mid-flip
     copy.style.opacity = fade;
     sides.style.opacity = fade;
-    if (!reduced) sides.style.transform = `translateY(${(t < 0.5 ? t : t - 1) * -60}px)`;
+    if (!reduced) {
+      const drift = t < 0.5 ? t : t - 1;            // out upward, back in from below
+      const blur = (1 - fade) * 8;
+      copy.style.transform = `translateY(${drift * -24}px)`;
+      copy.style.filter = blur > 0.2 ? `blur(${blur * 0.6}px)` : "";
+      sides.style.transform = `translateY(${drift * -40}px)`;
+      sides.style.filter = blur > 0.2 ? `blur(${blur}px)` : "";
+    }
     track.style.transform = `translateX(${-r * 100}vw)`;
     $("h-bar").style.transform = `scaleX(${pos / (N - 1)})`;
-    blendTheme(DESIGNS[i].palette, DESIGNS[i + 1].palette, t);
+    // swap the theme in a short window around the flip's midpoint, so a dark→light pair
+    // never sits on a muddy half-gray background
+    const tt = clamp((t - 0.38) / 0.24, 0, 1);
+    blendTheme(DESIGNS[i].palette, DESIGNS[i + 1].palette, tt * tt * (3 - 2 * tt));
   }
 
-  DESIGNS.forEach((d) => { new Image().src = d.front; });   // warm the cache so flips never show a blank face
+  // warm the cache once the page has loaded, so flips never show a blank face
+  addEventListener("load", () => (window.requestIdleCallback || setTimeout)(() => DESIGNS.forEach((d) => { new Image().src = d.front; })));
   render(0);
 
   let goTo;
@@ -114,7 +139,9 @@
     gsap.registerPlugin(ScrollTrigger);
     const st = ScrollTrigger.create({
       trigger: ".hero", start: "top top", end: () => "+=" + innerHeight * (N - 1) * 0.9,
-      pin: true, scrub: reduced ? true : 0.4, invalidateOnRefresh: true,
+      pin: true, scrub: reduced ? true : 0.9, invalidateOnRefresh: true,
+      // always come to rest on a whole design, never frozen mid-flip
+      snap: { snapTo: 1 / (N - 1), duration: { min: 0.25, max: 0.7 }, delay: 0.08, ease: "power2.inOut" },
       onUpdate: (self) => render(self.progress * (N - 1)),
     });
     // hand the nav over to the neutral brand theme as the lookbook arrives
@@ -146,7 +173,7 @@
     const p = d.palette;
     return `<div class="group" id="look-${d.slug}" data-slug="${d.slug}" style="--bg:${p.bg};--fg:${p.fg};--accent:${p.accent};--accent-fg:${p.accentFg}">
       <div class="wrap"><div class="group-head"><div><h3>${d.name}</h3><p>${d.tagline}</p></div>
-      <a class="btn" href="${SITE.igDM}" target="_blank" rel="noopener" aria-label="Order ${d.name}, DM us on Instagram">DM to order</a></div>
+      <div class="dm">${dmButtons("Order", `Order ${d.name}`)}</div></div>
       <div class="shots">${shots}</div></div></div>`;
   }).join("");
 
@@ -172,7 +199,7 @@
     $("lb-img").src = p.src;
     $("lb-img").alt = p.alt;
     $("lb-cap").textContent = p.design.name;
-    $("lb-cta").href = SITE.igDM;
+    relabel($("lb-dm"), `Order ${p.design.name}`);
     if (!lb.open) lb.showModal();
   }
   function step(dir) {

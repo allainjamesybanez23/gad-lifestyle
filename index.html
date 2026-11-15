@@ -11,7 +11,7 @@
   <link rel="icon" href="./assets/brand/logo.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
@@ -46,26 +46,24 @@
           <p class="hero-meta">
             <span class="badge" id="h-badge" hidden>New drop</span>
             <span class="counter"><b id="h-num">01</b> / <span id="h-total">08</span></span>
+            <a class="look-link" id="h-look" href="#lookbook">View lookbook</a>
           </p>
           <h1 id="h-name"></h1>
           <p class="hero-tag" id="h-tag"></p>
           <p class="hero-note" id="h-note"></p>
-          <div class="hero-cta">
-            <a class="btn" id="h-order" href="#" target="_blank" rel="noopener">Order / DM us</a>
-            <a class="btn ghost" id="h-look" href="#lookbook">View lookbook</a>
-          </div>
+          <div class="dm" id="h-dm" data-dm="Order"></div>
         </div>
 
         <div class="stage">
           <div class="card" id="card">
-            <img class="face face-a" id="face-a" alt="" width="1440" height="1800" fetchpriority="high">
-            <img class="face face-b" id="face-b" alt="" width="1440" height="1800" loading="lazy">
+            <img class="face face-a" id="face-a" src="./assets/signature/reverse-thorns-and-roses/front.webp" alt="GAD Reverse Thorns and Roses jersey" width="1440" height="1800" fetchpriority="high">
+            <img class="face face-b" id="face-b" alt="" width="1440" height="1800">
           </div>
         </div>
 
         <div class="sides" id="sides">
-          <figure class="side side-1"><img id="side-1" alt="" loading="lazy" width="1440" height="1920"><figcaption id="cap-1"></figcaption></figure>
-          <figure class="side side-2"><img id="side-2" alt="" loading="lazy" width="1440" height="1920"><figcaption id="cap-2"></figcaption></figure>
+          <figure class="side side-1"><img id="side-1" alt="" width="1440" height="1920"><figcaption id="cap-1"></figcaption></figure>
+          <figure class="side side-2"><img id="side-2" alt="" width="1440" height="1920"><figcaption id="cap-2"></figcaption></figure>
         </div>
       </div>
 
@@ -84,7 +82,6 @@
       <!-- 2 · Lookbook -->
       <section id="lookbook" class="section">
         <div class="wrap">
-          <p class="eyebrow">Lookbook</p>
           <h2>Worn by those who refuse to settle</h2>
           <div class="chips" id="chips" role="group" aria-label="Filter lookbook by design"></div>
         </div>
@@ -94,7 +91,6 @@
       <!-- 3 · Team printing -->
       <section id="team-printing" class="section">
         <div class="wrap">
-          <p class="eyebrow">Full sublimation · Silk screen · Clothing</p>
           <h2>Custom Team Jerseys</h2>
           <p class="lead">Your team, your colors, your names on the back. We design and print full sublimation jerseys for squads that grind together.</p>
 
@@ -110,8 +106,7 @@
             </div>
             <div class="quote">
               <p>Send us your team's design and headcount. We reply with a mockup and a quote.</p>
-              <a class="btn" data-link="messenger" href="#" target="_blank" rel="noopener">Get a quote</a>
-              <a class="btn ghost" data-link="igDM" href="#" target="_blank" rel="noopener">DM on Instagram</a>
+              <div class="dm" data-dm="Get a quote"></div>
             </div>
           </div>
         </div>
@@ -121,7 +116,6 @@
       <section id="about" class="section">
         <div class="wrap about">
           <div>
-            <p class="eyebrow">About</p>
             <h2>More than just merch. It's a lifestyle.</h2>
             <p class="lead" id="about-bio"></p>
             <p>GAD stands for Grind All Day. We started in Cebu, the Queen City of the South, with one jersey and one idea: wear the grind, represent the hustle, and make every day count.</p>
@@ -139,13 +133,9 @@
       <section id="contact" class="section">
         <div class="wrap contact">
           <div>
-            <p class="eyebrow">Contact</p>
             <h2>Grind with us</h2>
             <p class="lead">Orders and quotes go through DM. Message us and we'll sort your size, design, and delivery.</p>
-            <div class="hero-cta">
-              <a class="btn" data-link="messenger" href="#" target="_blank" rel="noopener">Message on Messenger</a>
-              <a class="btn ghost" data-link="igDM" href="#" target="_blank" rel="noopener">DM on Instagram</a>
-            </div>
+            <div class="dm" data-dm="Message us"></div>
           </div>
           <dl class="info">
             <div><dt>Hours</dt><dd id="c-hours"></dd></div>
@@ -179,7 +169,7 @@
       <img id="lb-img" alt="">
       <figcaption>
         <span id="lb-cap"></span>
-        <a class="btn" id="lb-cta" href="#" target="_blank" rel="noopener">Shop this design / DM to order</a>
+        <span class="dm" id="lb-dm" data-dm="Order"></span>
       </figcaption>
     </figure>
     <button type="button" class="lb-nav lb-next" id="lb-next" aria-label="Next photo">

@@ -11,7 +11,7 @@ const SITE = {
   phoneHref: "tel:+639994612260",
   instagram: "https://www.instagram.com/gad.lifestyle_/",
   facebook: "https://www.facebook.com/profile.php?id=61574786605325",
-  igDM: "https://ig.me/m/gad.lifestyle_",
+  igDM: "https://www.instagram.com/m/gad.lifestyle_/",   // opens a DM thread with GAD (ig.me links fail on some networks)
   messenger: "https://m.me/61574786605325",
 
   // Theme used everywhere outside the signature flip (team printing, about, footer)
