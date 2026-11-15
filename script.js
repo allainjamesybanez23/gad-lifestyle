@@ -120,7 +120,10 @@
     // hand the nav over to the neutral brand theme as the lookbook arrives
     ScrollTrigger.create({
       trigger: "#rest", start: "top 70%", end: "top 20%", scrub: true,
-      onUpdate: (self) => blendTheme(DESIGNS[N - 1].palette, SITE.neutral, self.progress),
+      // at progress 0 (page load, scrolling back up) the hero owns the theme
+      onUpdate: (self) => self.progress > 0
+        ? blendTheme(DESIGNS[N - 1].palette, SITE.neutral, self.progress)
+        : render(st.progress * (N - 1)),
     });
     goTo = (i) => window.scrollTo({ top: st.start + (i / (N - 1)) * (st.end - st.start), behavior: reduced ? "auto" : "smooth" });
   } else {
