@@ -50,3 +50,7 @@ Put the photo in `assets/teams/` and add it to `TEAMS` in `data.js`:
 Design tokens live at the top of `style.css` (`:root`): type scale `--t-*`, spacing `--s-*`, radii `--r-*`, shadows `--shadow-*`, motion `--ease` / `--dur-*`, and the color roles `--bg --fg --accent --accent-fg --muted --line --soft`. New styles should use these instead of new one-off values. Reusable pieces: `.btn` (+ `.ghost`), `.pill`, `.chip`, `.path` (card), `.steps`, `.proof`, `.empty`.
 
 The home section copy is plain HTML in `index.html` under `id="home"` and `id="start"`.
+
+## After editing style.css, script.js or data.js
+
+Change the `?v=...` number on those three links in `index.html` (any new value works, e.g. today's date). Without that, visitors keep seeing the old cached file for a while.
