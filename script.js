@@ -99,8 +99,9 @@
     $("h-look").href = "#look-" + d.slug;
     $("h-look").setAttribute("aria-label", `View ${d.name} lookbook`);
     relabel($("h-dm"), `Order ${d.name}`, orderText(d));
-    // pattern echo: the jersey itself, oversized and faint, behind the stage
-    $("motif").style.backgroundImage = d.cutout ? `url("${d.cutout}")` : "none";
+    // each design's own motif (roses, scales, snowflakes...) drawn behind the stage
+    $("motif").dataset.p = d.texture ? "tex" : d.pattern || "";
+    if (d.texture) $("motif").style.setProperty("--tile", `url("${d.texture}")`); else $("motif").style.removeProperty("--tile");
     // urgency tag from a real date in data.js; disappears once the date has passed
     const days = d.deadline ? Math.ceil((new Date(d.deadline + "T00:00:00+08:00") - Date.now()) / 864e5) : -1;
     $("h-urgent").hidden = days < 0;
@@ -148,7 +149,7 @@
     const fade = Math.abs(1 - 2 * t);               // 1 at rest, 0 mid-flip
     copy.style.opacity = fade;
     sides.style.opacity = fade;
-    $("motif").style.opacity = fade * 0.1;
+    $("motif").style.opacity = fade * (DESIGNS[Math.round(r)].texture ? 0.5 : 0.26);
     if (!reduced) {
       const drift = t < 0.5 ? t : t - 1;            // out upward, back in from below
       const blur = (1 - fade) * 8;
@@ -206,7 +207,7 @@
         <img src="${p.src}" alt="${p.alt}" loading="lazy" width="600" height="800">${p.tag ? `<span>${p.tag}</span>` : ""}</button>`;
     }).join("");
     const p = d.palette;
-    return `<div class="group" id="look-${d.slug}" data-slug="${d.slug}" style="--bg:${p.bg};--fg:${p.fg};--accent:${p.accent};--accent-fg:${p.accentFg}">
+    return `<div class="group" id="look-${d.slug}" data-slug="${d.slug}" data-p="${d.texture ? "tex" : d.pattern || ""}" style="${d.texture ? `--tile:url('${d.texture}');` : ""}--bg:${p.bg};--fg:${p.fg};--accent:${p.accent};--accent-fg:${p.accentFg}">
       <div class="wrap"><div class="group-head"><div><h3>${d.name}</h3><p>${d.tagline}</p></div>
       <div class="dm">${dmButtons("Order", `Order ${d.name}`, orderText(d))}</div></div>
       <div class="shots">${shots}</div></div></div>`;

@@ -48,6 +48,8 @@ const SITE = {
    palette: bg = page background, fg = text, accent = buttons/highlights,
             accentFg = text on top of accent. Keep fg/bg and accent/bg contrast >= 4.5.
    price / sizes: set to a string (e.g. "₱650", "S – 3XL") to show it; null hides it.
+   texture: the real print from the jersey photo, shown large and faint behind the design (preferred).
+   pattern: for plain designs with no print. One of: scales, frost, pin, orbit.
    cutout: transparent-background jersey for the flip (optional; falls back to front).
    front / back: product shots. back may be null.
    models: photos of people wearing THIS design. May be []. */
@@ -55,6 +57,7 @@ const DESIGNS = [
   {
     name: "Reverse Thorns and Roses",
     slug: "reverse-thorns-and-roses",
+    texture: "./assets/signature/reverse-thorns-and-roses/texture.webp",
     isNew: true,
     tagline: "Built on grind. Defined by style. More than just merch — it's a lifestyle.",
     note: "Pre-order open · Production starts Nov 21, 2026",
@@ -71,6 +74,7 @@ const DESIGNS = [
   {
     name: "Thorns and Roses",
     slug: "thorns-and-roses",
+    texture: "./assets/signature/thorns-and-roses/texture.webp",
     tagline: "Thorns cut. Roses bloom. You don't just grind — you love the grind.",
     note: "Limited restocks",
     price: null,
@@ -85,6 +89,7 @@ const DESIGNS = [
   {
     name: "Arctic Bloom",
     slug: "arctic-bloom",
+    pattern: "frost",
     tagline: "Strength in silence. Growth in the grind. Even in the coldest moments, we bloom.",
     note: "Cold blooded on and off the court",
     price: null,
@@ -104,6 +109,7 @@ const DESIGNS = [
   {
     name: "Venom Red",
     slug: "venom-red",
+    pattern: "scales",
     tagline: "Feel the heat. See the venom. Crafted for killers of comfort zones.",
     note: "Sold out on the first drop",
     price: null,
@@ -117,6 +123,7 @@ const DESIGNS = [
   {
     name: "Snowflakes",
     slug: "snowflakes",
+    texture: "./assets/signature/snowflakes/texture.webp",
     tagline: "No two grinds are ever the same, yet all thrive under pressure. Stay cool, work hard.",
     note: "Winter arc",
     price: null,
@@ -130,6 +137,7 @@ const DESIGNS = [
   {
     name: "Phantom Black",
     slug: "phantom-black",
+    pattern: "pin",
     tagline: "Strength isn't built when it's easy. It's built in the reps no one sees.",
     note: "GAD Essentials",
     price: null,
@@ -147,6 +155,7 @@ const DESIGNS = [
   {
     name: "Celestial White",
     slug: "celestial-white",
+    pattern: "orbit",
     tagline: "Engineered for movement. Designed for discipline. Worn by those who refuse to settle.",
     note: "GAD Essentials",
     price: null,
@@ -164,6 +173,7 @@ const DESIGNS = [
   {
     name: "Amber Ignite",
     slug: "amber-ignite",
+    texture: "./assets/signature/amber-ignite/texture.webp",
     tagline: "Black and gold. Grind all day, lit in amber.",
     note: "Pre-order open",
     price: null,

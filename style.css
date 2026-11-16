@@ -76,7 +76,21 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
 
 /* Hero: pinned signature flip */
 .hero { position: relative; height: 100vh; height: 100svh; min-height: 560px; padding-top: var(--nav-h); overflow: hidden; display: flex; flex-direction: column; background: var(--bg); }
-.motif { position: absolute; inset: 0; pointer-events: none; opacity: .1; background: 50% 42% / auto 230% no-repeat; filter: grayscale(1) contrast(1.25); -webkit-mask-image: radial-gradient(ellipse at 50% 50%, #000 15%, transparent 68%); mask-image: radial-gradient(ellipse at 50% 50%, #000 15%, transparent 68%); }
+/* Per-design motif: a tiled line pattern in the accent colour, faded out behind the copy */
+.motif { position: absolute; inset: 0; pointer-events: none; opacity: .3; background: var(--accent); -webkit-mask-image: var(--tile), linear-gradient(90deg, transparent 12%, #000 52%, #000 88%, transparent); mask-image: var(--tile), linear-gradient(90deg, transparent 12%, #000 52%, #000 88%, transparent); -webkit-mask-size: var(--tile-s, 160px), 100% 100%; mask-size: var(--tile-s, 160px), 100% 100%; -webkit-mask-repeat: var(--tile-r, repeat), no-repeat; mask-repeat: var(--tile-r, repeat), no-repeat; -webkit-mask-position: var(--tile-p, 0 0), 0 0; mask-position: var(--tile-p, 0 0), 0 0; -webkit-mask-composite: source-in; mask-composite: intersect; }
+.motif:not([data-p]), .motif[data-p=""] { display: none; }
+[data-p="pin"] { --tile: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26' fill='none' stroke='black' stroke-width='1' stroke-linecap='round'%3E%3Cpath d='M13 0v26'/%3E%3C/svg%3E"); --tile-s: 26px; }
+[data-p="orbit"] { --tile: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 420 420' fill='none' stroke='black' stroke-width='1' stroke-linecap='round'%3E%3Ccircle cx='210' cy='210' r='62'/%3E%3Ccircle cx='210' cy='210' r='128'/%3E%3Ccircle cx='210' cy='210' r='196' stroke-dasharray='2 9'/%3E%3Ccircle cx='272' cy='210' r='3' fill='black'/%3E%3Ccircle cx='210' cy='82' r='3' fill='black'/%3E%3Ccircle cx='71' cy='349' r='3' fill='black'/%3E%3C/svg%3E"); --tile-s: 460px; }
+[data-p="scales"] { --tile: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 32' fill='none' stroke='black' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0 16a24 24 0 0 1 48 0M-24 32a24 24 0 0 1 48 0M24 32a24 24 0 0 1 48 0M-24 0a24 24 0 0 1 48 0M24 0a24 24 0 0 1 48 0'/%3E%3C/svg%3E"); --tile-s: 58px; }
+[data-p="frost"] { --tile: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 70' fill='none' stroke='black' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0 0L40 70L80 0M0 70L40 0L80 70M0 35h80'/%3E%3C/svg%3E"); --tile-s: 96px; }
+/* tex = the real print lifted off the jersey photo (roses, snowflakes, paisley): one big soft image */
+.motif[data-p="tex"] { --tile-s: auto 112%; --tile-r: no-repeat; --tile-p: 62% 50%; }
+.group[data-p="tex"] { --tile-s: auto 150%; --tile-r: no-repeat; --tile-p: right -8% top 30%; }
+.group[data-p="tex"]::before { opacity: .42 !important; }
+/* the same motif in the corner of that design's lookbook block */
+.group { position: relative; overflow: hidden; }
+.group > .wrap { position: relative; z-index: 1; }
+.group[data-p]:not([data-p=""])::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: var(--accent); opacity: .22; -webkit-mask-image: var(--tile), radial-gradient(ellipse 60% 90% at 100% 0%, #000 5%, transparent 70%); mask-image: var(--tile), radial-gradient(ellipse 60% 90% at 100% 0%, #000 5%, transparent 70%); -webkit-mask-size: var(--tile-s, 160px), 100% 100%; mask-size: var(--tile-s, 160px), 100% 100%; -webkit-mask-repeat: var(--tile-r, repeat), no-repeat; mask-repeat: var(--tile-r, repeat), no-repeat; -webkit-mask-position: var(--tile-p, 0 0), 0 0; mask-position: var(--tile-p, 0 0), 0 0; -webkit-mask-composite: source-in; mask-composite: intersect; }
 .hero-track { position: absolute; inset: 0; display: flex; align-items: center; pointer-events: none; will-change: transform; }
 .hero-track span { flex: 0 0 100vw; text-align: center; white-space: nowrap; font: italic 900 clamp(5rem, 17vw, 17rem)/1 var(--display); font-stretch: 125%; text-transform: uppercase; color: transparent; -webkit-text-stroke: 1px var(--line); opacity: .7; }
 .hero-grid { position: relative; flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: clamp(1rem, 3vw, 3rem); width: min(1400px, 100% - 2.5rem); margin-inline: auto; }
@@ -86,7 +100,7 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
 .badge[hidden] { display: none; }
 .counter { font: 500 var(--t-sm)/1 var(--body); letter-spacing: .12em; color: var(--muted); font-variant-numeric: tabular-nums; }
 .counter b { color: var(--accent); font: italic 900 1.6rem/1 var(--display); font-stretch: 125%; }
-.hero #h-name { font-size: clamp(2rem, 4.4vw, 4.4rem); margin-bottom: 1rem; }
+.hero #h-name { font-size: clamp(2rem, 3.3vw, 4rem); margin-bottom: 1rem; }
 .hero-tag { font-size: var(--t-md); max-width: 34ch; }
 .hero-note { font: 600 var(--t-base)/1.4 var(--body); color: var(--accent); }
 .urgent { display: inline-flex; align-items: center; gap: .5rem; margin: .25rem 0 0; padding: .45rem .8rem; border: 1px solid var(--accent); border-radius: var(--r-pill); font: 600 var(--t-sm)/1 var(--body); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
@@ -398,6 +412,30 @@ dialog button:active { transform: scale(.94); }
 
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
+/* ================= Background patterns =================
+   Three quiet layers for the dark sections, all drawn in the theme's text colour:
+   pat-dots  = jersey mesh (halftone dots fading out of a corner)
+   pat-court = centre-court line art, half off the edge
+   pat-lines = diagonal speed lines in a band
+   pat-flip mirrors the placement so neighbouring sections do not repeat. */
+.pat { position: relative; overflow: hidden; isolation: isolate; }
+.pat > .wrap, .pat > .home-grid, .pat > .worn-strip { position: relative; z-index: 1; }
+.pat > .scroll-cue { z-index: 1; }
+.pat::before, .pat::after { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.pat-dots::before { background: radial-gradient(circle, var(--fg) 1.1px, transparent 1.7px) 0 0 / 16px 16px; opacity: .2; -webkit-mask-image: radial-gradient(ellipse 55% 75% at 100% 0%, #000 8%, transparent 72%); mask-image: radial-gradient(ellipse 55% 75% at 100% 0%, #000 8%, transparent 72%); }
+.pat-dots.pat-flip::before { -webkit-mask-image: radial-gradient(ellipse 55% 75% at 0% 100%, #000 8%, transparent 72%); mask-image: radial-gradient(ellipse 55% 75% at 0% 100%, #000 8%, transparent 72%); }
+.pat-lines::before { background: repeating-linear-gradient(115deg, var(--fg) 0 1px, transparent 1px 14px); opacity: .1; -webkit-mask-image: linear-gradient(115deg, transparent 58%, #000 76%, transparent 96%); mask-image: linear-gradient(115deg, transparent 58%, #000 76%, transparent 96%); }
+.pat-lines.pat-flip::before { -webkit-mask-image: linear-gradient(115deg, transparent 4%, #000 22%, transparent 40%); mask-image: linear-gradient(115deg, transparent 4%, #000 22%, transparent 40%); }
+.pat-court::after { background: var(--fg); opacity: .13; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600' fill='none' stroke='black' stroke-width='2'%3E%3Ccircle cx='300' cy='300' r='86'/%3E%3Ccircle cx='300' cy='300' r='210'/%3E%3Ccircle cx='300' cy='300' r='296' stroke-dasharray='3 12'/%3E%3Cpath d='M0 300h600'/%3E%3C/svg%3E") no-repeat left -260px bottom -300px / 760px; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600' fill='none' stroke='black' stroke-width='2'%3E%3Ccircle cx='300' cy='300' r='86'/%3E%3Ccircle cx='300' cy='300' r='210'/%3E%3Ccircle cx='300' cy='300' r='296' stroke-dasharray='3 12'/%3E%3Cpath d='M0 300h600'/%3E%3C/svg%3E") no-repeat left -260px bottom -300px / 760px; }
+.pat-court.pat-flip::after { -webkit-mask-position: right -280px top -320px; mask-position: right -280px top -320px; }
+/* a little accent light on the opening screen */
+.home { background-image: radial-gradient(circle at 8% 12%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 38%); }
+@media (max-width: 860px) {
+  .pat-court::after { -webkit-mask-size: 520px; mask-size: 520px; -webkit-mask-position: left -220px bottom -240px; mask-position: left -220px bottom -240px; }
+  .pat-court.pat-flip::after { -webkit-mask-position: right -230px top -250px; mask-position: right -230px top -250px; }
+  .pat-dots::before { opacity: .16; }
+}
+
 /* Worn by: who wears it + customer photos */
 .worn { padding-bottom: var(--s-7); }
 .worn-who { list-style: none; margin: var(--s-6) 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-6); }
@@ -421,6 +459,8 @@ dialog button:active { transform: scale(.94); }
   .stats .proof { grid-template-columns: repeat(2, 1fr); }
   .paths, .why { grid-template-columns: minmax(0, 1fr); }
   .scroll-cue { display: none; }
+  .motif[data-p="tex"] { --tile-s: auto 62%; --tile-p: 50% 12%; }
+  .motif { -webkit-mask-image: var(--tile), linear-gradient(180deg, #000 0%, #000 45%, transparent 75%); mask-image: var(--tile), linear-gradient(180deg, #000 0%, #000 45%, transparent 75%); }
   .worn-strip { grid-auto-columns: 62%; }
   .team-grid { grid-template-columns: repeat(2, 1fr); gap: var(--s-3); }
 }
