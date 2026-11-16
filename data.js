@@ -57,7 +57,7 @@ const DESIGNS = [
   {
     name: "Reverse Thorns and Roses",
     slug: "reverse-thorns-and-roses",
-    texture: "./assets/signature/reverse-thorns-and-roses/texture.webp",
+    texture: "./assets/signature/reverse-thorns-and-roses/texture.webp?v=2",
     isNew: true,
     tagline: "Built on grind. Defined by style. More than just merch — it's a lifestyle.",
     note: "Pre-order open · Production starts Nov 21, 2026",
@@ -74,7 +74,7 @@ const DESIGNS = [
   {
     name: "Thorns and Roses",
     slug: "thorns-and-roses",
-    texture: "./assets/signature/thorns-and-roses/texture.webp",
+    texture: "./assets/signature/thorns-and-roses/texture.webp?v=2",
     tagline: "Thorns cut. Roses bloom. You don't just grind — you love the grind.",
     note: "Limited restocks",
     price: null,
@@ -123,7 +123,7 @@ const DESIGNS = [
   {
     name: "Snowflakes",
     slug: "snowflakes",
-    texture: "./assets/signature/snowflakes/texture.webp",
+    texture: "./assets/signature/snowflakes/texture.webp?v=2",
     tagline: "No two grinds are ever the same, yet all thrive under pressure. Stay cool, work hard.",
     note: "Winter arc",
     price: null,
@@ -173,7 +173,7 @@ const DESIGNS = [
   {
     name: "Amber Ignite",
     slug: "amber-ignite",
-    texture: "./assets/signature/amber-ignite/texture.webp",
+    texture: "./assets/signature/amber-ignite/texture.webp?v=2",
     tagline: "Black and gold. Grind all day, lit in amber.",
     note: "Pre-order open",
     price: null,

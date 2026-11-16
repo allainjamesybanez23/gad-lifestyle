@@ -84,7 +84,7 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
 [data-p="scales"] { --tile: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 32' fill='none' stroke='black' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0 16a24 24 0 0 1 48 0M-24 32a24 24 0 0 1 48 0M24 32a24 24 0 0 1 48 0M-24 0a24 24 0 0 1 48 0M24 0a24 24 0 0 1 48 0'/%3E%3C/svg%3E"); --tile-s: 58px; }
 [data-p="frost"] { --tile: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 70' fill='none' stroke='black' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0 0L40 70L80 0M0 70L40 0L80 70M0 35h80'/%3E%3C/svg%3E"); --tile-s: 96px; }
 /* tex = the real print lifted off the jersey photo (roses, snowflakes, paisley): one big soft image */
-.motif[data-p="tex"] { --tile-s: auto 112%; --tile-r: no-repeat; --tile-p: 62% 50%; }
+.motif[data-p="tex"] { --tile-s: auto 140%; --tile-r: no-repeat; --tile-p: 60% 50%; }
 .group[data-p="tex"] { --tile-s: auto 150%; --tile-r: no-repeat; --tile-p: right -8% top 30%; }
 .group[data-p="tex"]::before { opacity: .42 !important; }
 /* the same motif in the corner of that design's lookbook block */
