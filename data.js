@@ -142,7 +142,6 @@ const DESIGNS = [
       "./assets/signature/phantom-black/model/01.webp",
       "./assets/signature/phantom-black/model/02.webp",
       "./assets/signature/phantom-black/model/03.webp",
-      "./assets/signature/phantom-black/model/04.webp",
     ],
   },
   {
