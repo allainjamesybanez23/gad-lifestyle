@@ -171,6 +171,8 @@ const DESIGNS = [
     palette: { bg: "#0C0B06", fg: "#F6EEDD", accent: "#E2A738", accentFg: "#0C0B06" },
     cutout: "./assets/signature/amber-ignite/cutout.webp",
     front: "./assets/signature/amber-ignite/front.webp",
+    sideShot: "./assets/signature/amber-ignite/front.webp",   // shown beside the floating jersey
+    sideCap: "Front + back",
     back: null,
     models: [],
   },

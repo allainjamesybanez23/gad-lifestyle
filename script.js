@@ -108,7 +108,7 @@
     // side photos: model shots first, the back of the jersey as a fallback
     const pics = d.models.filter((m) => m !== d.hero).slice(0, 2).map((src) => ({ src, alt: `Model wearing GAD ${d.name} jersey`, cap: "On body" }));
     // sideShot (data.js) overrides the fallback when the cut-out already shows the back
-    if (pics.length < 2 && d.sideShot) pics.push({ src: d.sideShot, alt: `GAD ${d.name} jersey, front`, cap: "Front" });
+    if (pics.length < 2 && d.sideShot) pics.push({ src: d.sideShot, alt: `GAD ${d.name} jersey`, cap: d.sideCap || "Front" });
     else if (pics.length < 2 && d.back) pics.push({ src: d.back, alt: `GAD ${d.name} jersey, back`, cap: "Back" });
     [1, 2].forEach((n) => {
       const p = pics[n - 1], fig = $("side-" + n).parentElement;
