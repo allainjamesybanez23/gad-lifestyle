@@ -7,7 +7,12 @@
   <meta name="description" content="GAD Lifestyle: signature jersey drops and full sublimation team jersey printing from Cebu. Stay Focused. Stay Driven. and Grind all Day.">
   <meta property="og:title" content="GAD Lifestyle — Grind All Day">
   <meta property="og:description" content="Signature jersey drops and custom team jersey printing from Cebu.">
-  <meta property="og:image" content="./assets/brand/collection.webp">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://allainjamesybanez23.github.io/gad-lifestyle/">
+  <meta property="og:image" content="https://allainjamesybanez23.github.io/gad-lifestyle/assets/brand/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="./assets/brand/logo.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,11 +20,12 @@
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <a class="skip" href="#lookbook">Skip to lookbook</a>
+  <div id="intro" aria-hidden="true"><div><b>GAD</b><span>Grind All Day</span></div></div>
+  <a class="skip" href="#collection">Skip to collection</a>
 
   <header class="nav">
-    <a class="logo" href="#collection" aria-label="GAD Lifestyle, back to top">GAD<span>Grind All Day</span></a>
-    <nav aria-label="Main">
+    <a class="logo" href="#home" aria-label="GAD Lifestyle, back to top">GAD<span>Grind All Day</span></a>
+    <nav aria-label="Main" id="menu">
       <a href="#collection">Collection</a>
       <a href="#lookbook">Lookbook</a>
       <a href="#team-printing">Team Printing</a>
@@ -34,11 +40,103 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8.5V7c0-.8.5-1.2 1.3-1.2H17V3h-2.4C12 3 10.6 4.6 10.6 7v1.5H8.3v2.9h2.3V21H14v-9.6h2.6l.4-2.9z"/></svg>
       </a>
     </div>
+    <button type="button" class="menu-btn" id="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="menu">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path class="m-open" d="M4 7h16M4 12h16M4 17h16"/><path class="m-close" d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
   </header>
 
   <main>
+    <!-- 0 · Home: the first thing a visitor sees -->
+    <section id="home" class="home" aria-label="Welcome">
+      <div class="home-grid">
+        <div class="home-copy">
+          <a class="pill" id="home-drop" href="#collection"><i></i><span id="home-drop-text">New drop out now</span><svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <h1>Wear the <em>grind.</em></h1>
+          <p class="home-sub">Signature jerseys from Cebu, built for the court, the gym, and the streets. Limited drops. Every design carries a meaning.</p>
+          <div class="home-cta">
+            <a class="btn" href="#collection">Shop the collection <svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="btn ghost" href="#team-printing">Custom team jerseys</a>
+          </div>
+          <ul class="home-points">
+            <li>Lightweight fabric</li>
+            <li>Breathable</li>
+            <li>Durable quality</li>
+          </ul>
+        </div>
+        <div class="home-art" id="home-art">
+          <img class="home-photo" src="./assets/brand/collection.webp" alt="Six GAD signature jerseys laid out together: Celestial White, Arctic Bloom, Snowflakes, Venom Red, Thorns and Roses and Phantom Black" width="1440" height="1920" fetchpriority="high">
+        </div>
+      </div>
+      <a class="scroll-cue" href="#start" aria-label="Scroll to learn more"><span></span></a>
+    </section>
+
+    <div id="start" class="start">
+      <section class="section stats" aria-label="GAD in numbers">
+        <div class="wrap"><ul class="proof" id="proof"></ul></div>
+      </section>
+
+      <section class="section worn" aria-labelledby="worn-h">
+        <div class="wrap">
+          <h2 id="worn-h"></h2>
+          <p class="lead" id="worn-text"></p>
+          <ul class="worn-who" id="worn-who"></ul>
+        </div>
+        <div class="worn-strip" id="worn-strip" tabindex="0" role="group" aria-label="Photos of ballers wearing GAD jerseys"></div>
+      </section>
+
+      <section class="section" aria-labelledby="paths-h">
+        <div class="wrap">
+          <h2 id="paths-h">Two ways to wear GAD</h2>
+          <div class="paths">
+            <a class="path" href="#collection">
+              <img src="./assets/signature/phantom-black/model/03.webp" alt="Two models in the gym wearing GAD Celestial White and Phantom Black jerseys" loading="lazy" width="1440" height="1920">
+              <div>
+                <span class="path-n">01</span>
+                <h3>Signature collection</h3>
+                <p>Eight designs, small runs. Roses, snowflakes, venom, amber. When a drop sells out, it is gone until the next restock.</p>
+                <span class="path-go">See the collection <svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+              </div>
+            </a>
+            <a class="path path-team" href="#team-printing">
+              <b aria-hidden="true">23</b>
+              <div>
+                <span class="path-n">02</span>
+                <h3>Custom team jerseys</h3>
+                <p>Your colors, your logo, your names and numbers. Full sublimation printing for squads that grind together.</p>
+                <span class="path-go">Get a quote <svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="why-h">
+        <div class="wrap">
+          <h2 id="why-h">Built for the reps no one sees</h2>
+          <ul class="why">
+            <li><span>01</span><h3>Made to move</h3><p>Lightweight, breathable, durable fabric. Full sublimation print, edge to edge.</p></li>
+            <li><span>02</span><h3>Designs with a story</h3><p>Thorns and Roses is the beauty and pain of the grind. Arctic Bloom is growth in the cold. Nothing here is random.</p></li>
+            <li><span>03</span><h3>Limited drops</h3><p>Small runs, pre-order windows, limited restocks. Venom Red sold out on its first drop.</p></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="order-h">
+        <div class="wrap">
+          <h2 id="order-h">Order in three messages</h2>
+          <ol class="steps">
+            <li><b>Pick your design</b><p>Scroll the collection and stop on the one that speaks to you.</p></li>
+            <li><b>DM us</b><p>Tap Messenger or Instagram. On Messenger the design name is already typed for you.</p></li>
+            <li><b>Lock it in</b><p>We confirm your size, payment, and delivery. Then it is yours.</p></li>
+          </ol>
+          <div class="order-cta"><a class="btn" href="#collection">Start with the new drop <svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        </div>
+      </section>
+    </div>
+
     <!-- 1 · Signature collection flip -->
     <section id="collection" class="hero" aria-label="Signature collection">
+      <div class="motif" id="motif" aria-hidden="true"></div>
       <div class="hero-track" aria-hidden="true"></div>
 
       <div class="hero-grid">
@@ -48,15 +146,16 @@
             <span class="counter"><b id="h-num">01</b> / <span id="h-total">08</span></span>
             <a class="look-link" id="h-look" href="#lookbook">View lookbook</a>
           </p>
-          <h1 id="h-name"></h1>
+          <h2 id="h-name"></h2>
           <p class="hero-tag" id="h-tag"></p>
           <p class="hero-note" id="h-note"></p>
+          <p class="urgent" id="h-urgent" hidden></p>
           <div class="dm" id="h-dm" data-dm="Order"></div>
         </div>
 
         <div class="stage">
           <div class="card" id="card">
-            <img class="face face-a" id="face-a" src="./assets/signature/reverse-thorns-and-roses/front.webp" alt="GAD Reverse Thorns and Roses jersey" width="1440" height="1800" fetchpriority="high">
+            <img class="face face-a" id="face-a" src="./assets/signature/reverse-thorns-and-roses/front.webp" alt="GAD Reverse Thorns and Roses jersey" width="1440" height="1800">
             <img class="face face-b" id="face-b" alt="" width="1440" height="1800">
           </div>
         </div>
@@ -79,14 +178,18 @@
     </section>
 
     <div id="rest">
+      <div class="marquee" aria-hidden="true"><div class="marquee-in"></div></div>
       <!-- 2 · Lookbook -->
       <section id="lookbook" class="section">
         <div class="wrap">
           <h2>Worn by those who refuse to settle</h2>
           <div class="chips" id="chips" role="group" aria-label="Filter lookbook by design"></div>
+          <p class="sr" id="look-status" role="status" aria-live="polite"></p>
         </div>
         <div id="groups"></div>
       </section>
+
+      <div class="marquee" aria-hidden="true"><div class="marquee-in rev"></div></div>
 
       <!-- 3 · Team printing -->
       <section id="team-printing" class="section">
@@ -95,6 +198,7 @@
           <p class="lead">Your team, your colors, your names on the back. We design and print full sublimation jerseys for squads that grind together.</p>
 
           <div class="team-grid" id="team-grid" hidden></div>
+          <p class="empty" id="team-empty" hidden>Team photos are on the way. For now you can see our team work on <a data-link="facebook" href="#" target="_blank" rel="noopener">our Facebook page</a>.</p>
 
           <h3>How it works</h3>
           <ol class="steps" id="steps"></ol>
@@ -139,7 +243,7 @@
           </div>
           <dl class="info">
             <div><dt>Hours</dt><dd id="c-hours"></dd></div>
-            <div><dt>Phone</dt><dd><a id="c-phone" href="#"></a></dd></div>
+            <div><dt>Phone</dt><dd><a id="c-phone" href="#"></a><button type="button" class="copy" id="c-copy" aria-live="polite">Copy</button></dd></div>
             <div><dt>Location</dt><dd id="c-loc"></dd></div>
             <div><dt>Instagram</dt><dd><a data-link="instagram" href="#" target="_blank" rel="noopener">@gad.lifestyle_</a></dd></div>
             <div><dt>Facebook</dt><dd><a data-link="facebook" href="#" target="_blank" rel="noopener">GAD Apparel</a></dd></div>
@@ -156,6 +260,8 @@
       </footer>
     </div>
   </main>
+
+  <a class="btn sticky-dm" id="sticky-dm" href="#" target="_blank" rel="noopener" hidden></a>
 
   <!-- Lightbox -->
   <dialog id="lightbox" aria-label="Photo viewer">
